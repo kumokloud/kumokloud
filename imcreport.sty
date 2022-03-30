@@ -1,0 +1,59 @@
+\usepackage[margin=20truemm, dvipdfm]{geometry}
+
+
+\newcommand*{\studentnumber}[1]{
+  \makeatletter
+  \newcommand{\@studentnumber}{#1}
+  \makeatother
+}
+
+
+\newcommand*{\header}[1]{
+  \makeatletter
+  \newcommand{\@header}{#1}
+  \makeatother
+}
+
+
+\newcommand{\submaketitle}{
+  \@header\hfill\@date
+
+  \vspace{1zh}
+
+  \center{
+  \Large{\@title}
+  }
+
+  \vspace{1zh}
+
+  \hfill\@studentnumber\hspace{1zw}\@author
+  \vspace{2zh}
+}
+
+
+\renewcommand{\maketitle}{
+  \if@twocolumn
+    \twocolumn[
+      \submaketitle
+    ]
+  \else
+    \submaketitle
+  \fi
+}
+
+\if@twocolumn
+  \renewcommand{\section}{%
+    \@startsection{section}{1}{\z@}%
+    {0.4\Cvs}{0.2\Cvs}%
+    {\normalfont\large\headfont\raggedright}}
+\else
+  \renewcommand{\section}{%
+    \if@slide\clearpage\fi
+    \@startsection{section}{1}{\z@}%
+    {\Cvs \@plus.5\Cdp \@minus.2\Cdp}% 前アキ
+    {.5\Cvs \@plus.3\Cdp}% 後アキ
+    {\normalfont\Large\headfont\raggedright}}
+\fi
+
+\pagestyle{empty}
+
